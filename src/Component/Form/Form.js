@@ -18,6 +18,8 @@ const FormElememt = () => {
     password: "",
     confirmpassword: "",
   });
+  const [toggle, settoggle] = useState("login");
+
   const confirmPassword = useRef(null);
   const ctx = useContext(UserContext);
   const onChangeHandler = (e) => {
@@ -27,10 +29,19 @@ const FormElememt = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(user, confirmPassword);
-    if (user.password === user.confirmpassword) {
-      ctx.signup(user);
-    } else {
-      alert("enter corrcet password");
+    if (toggle == "signup") {
+      if (user.password === user.confirmpassword) {
+        ctx.signup(user);
+      } else {
+        alert("enter corrcet password");
+      }
+    }
+    if (toggle == "login") {
+      const obj = {
+        email: user.email,
+        password: user.password,
+      };
+      ctx.login(obj);
     }
   };
   return (
@@ -38,14 +49,14 @@ const FormElememt = () => {
       <Card
         sx={{
           width: { xs: "100%", sm: 400, md: 400 },
-          height: 400,
+          height: "100%",
           m: "30px auto",
           "--Card-radius": 5,
           p: "20px",
           background: "lightgreen",
         }}
       >
-        <h1>Signup</h1>
+        <h1>{toggle == "signup" ? "Sign Up" : "login"}</h1>
         <p style={{ color: "red" }}>{ctx.errmessage}</p>
         <form onSubmit={submitHandler}>
           <Stack
@@ -56,13 +67,15 @@ const FormElememt = () => {
             }}
             spacing={2}
           >
-            <TextField
-              label="Name"
-              name="name"
-              type="text"
-              variant="filled"
-              onChange={onChangeHandler}
-            />
+            {toggle == "signup" && (
+              <TextField
+                label="Name"
+                name="name"
+                type="text"
+                variant="filled"
+                onChange={onChangeHandler}
+              />
+            )}
 
             <TextField
               id="filled-password-input"
@@ -79,18 +92,27 @@ const FormElememt = () => {
               variant="filled"
               onChange={onChangeHandler}
             />
-            <TextField
-              label="Confirm Password"
-              name="confirmpassword"
-              type="password"
-              variant="filled"
-              onChange={onChangeHandler}
-            />
+            {toggle == "signup" && (
+              <TextField
+                label="Confirm Password"
+                name="confirmpassword"
+                type="password"
+                variant="filled"
+                onChange={onChangeHandler}
+              />
+            )}
             <Box>
               <CustomButton type="submit ">Submit</CustomButton>
             </Box>
           </Stack>
         </form>
+        <h3
+          onClick={() => {
+            settoggle(toggle == "login" ? "signup" : "login");
+          }}
+        >
+          {toggle == "login" ? "singup" : "login"}
+        </h3>
       </Card>
     </>
   );
