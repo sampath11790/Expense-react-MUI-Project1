@@ -6,7 +6,7 @@ const UserProvider = (props) => {
   const login = async (obj) => {
     console.log(obj);
     try {
-      const response = await fetch("http://localhost:5000/user/login", {
+      const response = await fetch("http://localhost:5004/user/login", {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
@@ -21,7 +21,7 @@ const UserProvider = (props) => {
       console.log(data);
       alert("login success");
     } catch (err) {
-      seterrormessage("email must be unique");
+      seterrormessage("enter valid password and email");
       alert("enter valid password and email");
       console.log(err);
     }
@@ -29,7 +29,7 @@ const UserProvider = (props) => {
   const signup = async (obj) => {
     console.log(obj);
     try {
-      const response = await fetch("http://localhost:5000/user/signup", {
+      const response = await fetch("http://localhost:5004/user/signup", {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {

@@ -1,15 +1,19 @@
 import React, { useState, useContext, useRef } from "react";
 import "./Form.css";
-import { Box, Button, styled, Card, TextField, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  TextField,
+  Stack,
+  Paper,
+  Typography,
+  Avatar,
+} from "@mui/material";
 import UserContext from "../Context/Usercontext";
-
-const CustomButton = styled(Button)({
-  width: 200,
-  background: "green",
-  color: "black",
-  marginTop: "10px",
-  borderRadius: 20,
-});
+// import { Lock } from "@material-ui/icons";
+import { PersonAdd } from "@mui/icons-material";
+import { Lock, LockClockOutlined } from "@mui/icons-material";
 
 const FormElememt = () => {
   const [user, setuser] = useState({
@@ -48,15 +52,41 @@ const FormElememt = () => {
     <>
       <Card
         sx={{
-          width: { xs: "100%", sm: 400, md: 400 },
+          width: { xs: "100%", sm: 330, md: 330 },
           height: "100%",
-          m: "30px auto",
-          "--Card-radius": 5,
+          m: "25px auto",
+          "--Card-radius": "15px",
           p: "20px",
           background: "lightgreen",
+          borderRadius: "var(--Card-radius)",
         }}
       >
-        <h1>{toggle == "signup" ? "Sign Up" : "login"}</h1>
+        {/* <h1>{toggle == "signup" ? "Sign Up" : "login"}</h1> */}
+
+        <Paper
+          sx={{
+            backgroundColor: "#2E8B50",
+            padding: 0.5,
+            marginBottom: 2,
+          }}
+        >
+          {/* <Typography variant="h5" component="h2" sx={{ color: "white" }}>
+            {toggle == "signup" ? "Sign Up" : "login"} Form
+          </Typography> */}
+          <Box display="flex" flexDirection="row" alignItems="center">
+            <Avatar sx={{ backgroundColor: "gold", marginRight: 2 }}>
+              <LockClockOutlined sx={{ color: "#2E8B57" }} />
+            </Avatar>
+            <Typography
+              variant="h5"
+              component="h3"
+              sx={{ color: "white", fontWeight: "bold" }}
+            >
+              {toggle == "signup" ? "SignUp" : "login"}
+              <span style={{ color: "gold" }}> Form</span>
+            </Typography>
+          </Box>
+        </Paper>
         <p style={{ color: "red" }}>{ctx.errmessage}</p>
         <form onSubmit={submitHandler}>
           <Stack
@@ -101,18 +131,39 @@ const FormElememt = () => {
                 onChange={onChangeHandler}
               />
             )}
-            <Box>
+            {/* <Box>
               <CustomButton type="submit ">Submit</CustomButton>
-            </Box>
+            </Box> */}
+            <div>
+              <Button
+                variant="contained"
+                startIcon={toggle == "signup" ? <PersonAdd /> : <Lock />}
+                // className={classes.button}
+                sx={{ width: 250, borderRadius: 10 }}
+              >
+                {toggle == "signup" ? "Sign Up" : "LogIn"}
+              </Button>
+            </div>
           </Stack>
         </form>
-        <h3
-          onClick={() => {
-            settoggle(toggle == "login" ? "signup" : "login");
-          }}
-        >
-          {toggle == "login" ? "singup" : "login"}
-        </h3>
+        <div>
+          <Button
+            variant="outlined"
+            sx={{
+              width: 300,
+              marginTop: 2,
+              color: "black",
+              borderColor: "white",
+              backgroundColor: "transparent",
+            }}
+            startIcon={toggle == "signup" ? <Lock /> : <PersonAdd />}
+            onClick={() => {
+              settoggle(toggle == "login" ? "signup" : "login");
+            }}
+          >
+            {toggle == "signup" ? "Login" : "Sign up"}
+          </Button>
+        </div>
       </Card>
     </>
   );
