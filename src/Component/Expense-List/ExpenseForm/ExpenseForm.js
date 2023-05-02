@@ -3,7 +3,9 @@ import React, { useContext, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { postData } from "../../../Store/Expense-thunk";
-
+import { Button, TextField } from "@mui/material";
+import { PersonAdd } from "@mui/icons-material";
+import { AddToQueueOutlined } from "@mui/icons-material";
 const Initial_state = { name: "", description: "", amount: "" };
 const ExpenseForm = () => {
   const [enteredInput, setenteredInput] = useState(Initial_state);
@@ -17,39 +19,68 @@ const ExpenseForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     Dispatch(postData(enteredInput));
+    setenteredInput(Initial_state);
   };
 
   return (
-    <div>
-      <label>Name</label>
-      <br />
-      <input
+    <div style={{ marginTop: 10 }}>
+      <TextField
+        sx={{ m: 1.5, p: -10 }}
         type="text"
-        value={enteredInput.name}
+        // value={enteredInput.name}
         name="name"
         onChange={addEnteredInput}
-      ></input>
-      <br />
-      <label>Description</label>
-      <br />
-      <input
+        label="Name"
+        variant="outlined"
+      />
+      <TextField
+        sx={{ m: 1.5 }}
         type="text"
-        value={enteredInput.description}
+        // value={enteredInput.description}
         name="description"
         onChange={addEnteredInput}
-      ></input>
-      <br />
-      <label>Amount</label>
-      <br />
-      <input
-        type="number"
-        value={enteredInput.amount}
+        label="Description"
+        variant="outlined"
+      />
+
+      <TextField
+        sx={{ m: 1.5 }}
+        type="amount"
+        // value={enteredInput.amount}
         name="amount"
         onChange={addEnteredInput}
-      ></input>
+        label="Amount"
+        variant="outlined"
+      />
       <br />
+
+      {/* <TextField
+        sx={{ m: 1.5 }}
+        type="date"
+        value={enteredInput.date}
+        name="date"
+        onChange={addEnteredInput}
+        // label="date"
+        variant="outlined"
+      /> */}
+      {/* <br /> */}
+      <Button
+        sx={{
+          width: 300,
+          marginTop: 2,
+          color: "white",
+          borderColor: "white",
+          variant: "contained",
+        }}
+        variant="contained"
+        onClick={submitHandler}
+        startIcon={<AddToQueueOutlined />}
+      >
+        Add Expense
+      </Button>
+      {/* <br />
       <button onClick={submitHandler}>Add Product</button>
-      <br />
+      <br /> */}
     </div>
   );
 };

@@ -2,17 +2,37 @@ import React, { useContext } from "react";
 // import ExpenseContext from "../context/ExpenseContext";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../../../Store/Expense-thunk";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ListItem = ({ item }) => {
   const dispatch = useDispatch();
   // const ctx = useContext(ExpenseContext);
   return (
-    <li key={item.id} style={{ fontSize: 20, listStyle: "none" }}>
-      <span>{item.name}</span>--
-      <span>{item.description}</span>--
-      <span>{item.amount}</span>
-      <button onClick={() => dispatch(deleteItem(item.id))}>Delete</button>
-    </li>
+    <tr key={item.name} className="some">
+      {/* <td>{item.date}</td> */}
+      <td>{item.name}</td>
+      <td>{item.description}</td>
+      <td>{item.amount}</td>
+      <td>
+        {
+          <IconButton
+            aria-label="delete"
+            size="small"
+            color="red"
+            onClick={() => dispatch(deleteItem(item.id))}
+          >
+            <DeleteIcon />
+          </IconButton>
+        }
+      </td>
+    </tr>
+    // <li key={item.id} style={{ fontSize: 20, listStyle: "none" }}>
+    //   <span>{item.name}</span>--
+    //   <span>{item.description}</span>--
+    //   <span>{item.amount}</span>
+    //   <button onClick={() => dispatch(deleteItem(item.id))}>Delete</button>
+    // </li>
   );
 };
 

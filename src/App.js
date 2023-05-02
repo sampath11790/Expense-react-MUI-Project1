@@ -6,6 +6,8 @@ import ExpenseList from "./Component/Expense-List/list/list";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getallExpense } from "./Store/Expense-thunk";
+import PrimarySearchAppBar from "./Component/Navbar/Navbar";
+// import ListStyle from "./Component/Expense-List/liststyle";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,11 +16,14 @@ function App() {
     dispatch(getallExpense());
   }, [call]);
   return (
-    <Container className="App">
+    <div className="App">
+      <PrimarySearchAppBar></PrimarySearchAppBar>
+      {/* <ListStyle></ListStyle> */}
       {/* <FormElememt></FormElememt> */}
       {/* <ExpenseForm></ExpenseForm> */}
+
       <ExpenseList></ExpenseList>
-    </Container>
+    </div>
   );
 }
 
