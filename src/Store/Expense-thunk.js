@@ -1,6 +1,6 @@
 import { ExpenseSliceAction } from "./ExpenseSlice";
 
-export const postData = (obj) => {
+export const postData = (obj, token) => {
   return async (dispatch) => {
     try {
       const jsondata = JSON.stringify(obj);
@@ -9,6 +9,7 @@ export const postData = (obj) => {
         body: jsondata,
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
       });
       const data = await response.json();
@@ -22,7 +23,7 @@ export const postData = (obj) => {
   };
 };
 
-export const getallExpense = () => {
+export const getallExpense = (token) => {
   return async (dispatch) => {
     try {
       const response = await fetch("http://localhost:5004/expense", {
@@ -30,6 +31,7 @@ export const getallExpense = () => {
 
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
       });
       const fetcheddata = await response.json();
@@ -38,15 +40,20 @@ export const getallExpense = () => {
       dispatch(ExpenseSliceAction.setSentData(fetcheddata));
     } catch (error) {
       console.error(error);
+      return;
     }
   };
 };
 
-export const deleteItem = (id) => {
+export const deleteItem = (id, token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(`http://localhost:5004/post-product/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
       });
       const data = await response.json();
       //calling get function by change use effect value

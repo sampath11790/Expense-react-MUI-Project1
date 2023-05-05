@@ -13,13 +13,14 @@ function App() {
   const dispatch = useDispatch();
   const call = useSelector((state) => state.expenseslice.iscall);
   useEffect(() => {
-    dispatch(getallExpense());
+    const token = localStorage.getItem("token");
+    dispatch(getallExpense(token));
   }, [call]);
   return (
     <div className="App">
       <PrimarySearchAppBar></PrimarySearchAppBar>
       {/* <ListStyle></ListStyle> */}
-      {/* <FormElememt></FormElememt> */}
+      <FormElememt></FormElememt>
       {/* <ExpenseForm></ExpenseForm> */}
 
       <ExpenseList></ExpenseList>

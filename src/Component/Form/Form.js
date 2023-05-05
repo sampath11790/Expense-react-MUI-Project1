@@ -30,9 +30,10 @@ const FormElememt = () => {
     ctx.seterrormessage(" ");
     setuser({ ...user, [e.target.name]: e.target.value });
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(user, confirmPassword);
+    console.log("user", confirmPassword);
     if (toggle == "signup") {
       if (user.password === user.confirmpassword) {
         ctx.signup(user);
@@ -136,6 +137,7 @@ const FormElememt = () => {
             </Box> */}
             <div>
               <Button
+                type="submit "
                 variant="contained"
                 startIcon={toggle == "signup" ? <PersonAdd /> : <Lock />}
                 // className={classes.button}

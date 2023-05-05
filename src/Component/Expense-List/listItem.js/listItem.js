@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 const ListItem = ({ item }) => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
   // const ctx = useContext(ExpenseContext);
   return (
     <tr key={item.name} className="some">
@@ -20,7 +21,7 @@ const ListItem = ({ item }) => {
             aria-label="delete"
             size="small"
             color="red"
-            onClick={() => dispatch(deleteItem(item.id))}
+            onClick={() => dispatch(deleteItem(item.id, token))}
           >
             <DeleteIcon />
           </IconButton>

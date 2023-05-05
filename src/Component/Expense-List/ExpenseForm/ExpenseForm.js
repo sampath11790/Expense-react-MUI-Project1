@@ -11,6 +11,8 @@ const ExpenseForm = () => {
   const [enteredInput, setenteredInput] = useState(Initial_state);
   const Expense = useSelector((state) => state.expenseslice.data);
   console.log("updated data===>", Expense);
+
+  const token = localStorage.getItem("token");
   const Dispatch = useDispatch();
 
   const addEnteredInput = (e) => {
@@ -18,7 +20,8 @@ const ExpenseForm = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    Dispatch(postData(enteredInput));
+
+    Dispatch(postData(enteredInput, token));
     setenteredInput(Initial_state);
   };
 

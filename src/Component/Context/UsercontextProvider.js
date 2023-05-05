@@ -5,12 +5,14 @@ const UserProvider = (props) => {
   const [errmessage, seterrormessage] = useState(null);
   const login = async (obj) => {
     console.log(obj);
+    // const token = localStorage.getItem("token");
     try {
       const response = await fetch("http://localhost:5004/user/login", {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
           "Content-Type": "application/json",
+          // " Authorization": token,
         },
       });
       const data = await response.json();
@@ -18,7 +20,8 @@ const UserProvider = (props) => {
         throw new Error("");
         return;
       }
-      console.log(data);
+      console.log("data", data);
+      localStorage.setItem("token", data.token);
       alert("login success");
     } catch (err) {
       seterrormessage("enter valid password and email");
@@ -28,6 +31,7 @@ const UserProvider = (props) => {
   };
   const signup = async (obj) => {
     console.log(obj);
+
     try {
       const response = await fetch("http://localhost:5004/user/signup", {
         method: "POST",
@@ -37,12 +41,13 @@ const UserProvider = (props) => {
         },
       });
       const data = await response.json();
-      if (data.errors) {
+      if (data.error) {
         throw new Error(data.errors[0].message);
         return;
       }
-      console.log("err", data);
+      console.log("", data);
       alert("successfull");
+      return;
     } catch (err) {
       seterrormessage("email must be unique");
       alert("email must be unique");
