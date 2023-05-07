@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import { ListItem, Stack } from "@mui/material";
+import Premium from "../Premium/Premium";
 
 const PrimarySearchAppBar = () => {
   return (
@@ -42,6 +43,9 @@ const PrimarySearchAppBar = () => {
         >
           <ListItem>Expense</ListItem>
           <ListItem>Profile</ListItem>
+          <ListItem>
+            <Premium></Premium>
+          </ListItem>
         </Stack>
       </Toolbar>
     </AppBar>
