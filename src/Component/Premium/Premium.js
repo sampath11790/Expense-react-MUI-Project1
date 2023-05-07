@@ -61,7 +61,7 @@ const Premium = () => {
     </div>
   );
 };
-
+console.log("test")
 export default Premium;
 async function askreqst(token) {
   const response = await fetch("http://localhost:5004/purchase/premium", {
