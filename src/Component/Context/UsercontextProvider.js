@@ -22,6 +22,7 @@ const UserProvider = (props) => {
       }
       console.log("data", data);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("ispremium", data.ispremium);
       alert("login success");
     } catch (err) {
       seterrormessage("enter valid password and email");

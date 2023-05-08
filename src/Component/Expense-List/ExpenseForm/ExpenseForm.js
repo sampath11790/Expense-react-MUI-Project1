@@ -69,7 +69,7 @@ const ExpenseForm = () => {
       {/* <br /> */}
       <Button
         sx={{
-          width: 300,
+          width: { sx: 100, sm: 200, md: 300 },
           marginTop: 2,
           color: "white",
           borderColor: "white",

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 var a = {
   data: [],
+  LeaderBoard: [],
   iscall: true,
 };
 const ExpenseSlice = createSlice({
@@ -18,6 +19,9 @@ const ExpenseSlice = createSlice({
     },
     callgetFunction(state, action) {
       state.iscall = !state.iscall;
+    },
+    updateLeaderBoard(state, action) {
+      state.LeaderBoard = [...action.payload];
     },
   },
 });

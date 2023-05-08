@@ -19,7 +19,7 @@ const PrimarySearchAppBar = () => {
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          sx={{ mr: 2 }}
+          sx={{ mr: 0 }}
         >
           <MenuIcon />
         </IconButton>

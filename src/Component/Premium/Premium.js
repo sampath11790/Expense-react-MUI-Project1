@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { premiumRequest } from "../../Store/Expense-thunk";
 import { premiumRequest } from "../../Store/Premium-thunk";
 const Premium = () => {
+  const ispremium = localStorage.getItem("ispremium");
   async function razorPayPaymentHandler(token) {
     const data = await askreqst(token);
 
@@ -49,19 +50,32 @@ const Premium = () => {
       alert("payment failed");
     });
   }
-
+  console.log(ispremium);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   return (
-    <div>
+    <>
       {/* <button onClick={() => dispatch(premiumRequest(token))}>
         buy Premium
       </button> */}
-      <button onClick={() => razorPayPaymentHandler(token)}>buy Premium</button>
-    </div>
+      {/* <button onClick={() => razorPayPaymentHandler(token)}>buy Premium</button> */}
+      {ispremium == "true" ? (
+        <div className="gif-img">
+          <img
+            src="https://c.tenor.com/9cYfCqKw0DwAAAAj/corona.gif"
+            alt="crown"
+          ></img>
+          {/* <span>Premium User</span> */}
+        </div>
+      ) : (
+        <button onClick={() => razorPayPaymentHandler(token)}>
+          buy Premium
+        </button>
+      )}
+    </>
   );
 };
-console.log("test")
+console.log("test");
 export default Premium;
 async function askreqst(token) {
   const response = await fetch("http://localhost:5004/purchase/premium", {
@@ -72,10 +86,4 @@ async function askreqst(token) {
   });
   const data = await response.json();
   return data;
-  if (!data.error) {
-    console.log("getpremiumRequest", data);
-    // sucesshandler(data)
-    // data = data;
-    console.log(data);
-  }
 }

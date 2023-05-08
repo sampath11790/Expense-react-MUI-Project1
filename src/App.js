@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getallExpense } from "./Store/Expense-thunk";
 import PrimarySearchAppBar from "./Component/Navbar/Navbar";
+import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
 // import ListStyle from "./Component/Expense-List/liststyle";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       {/* <ExpenseForm></ExpenseForm> */}
 
       <ExpenseList></ExpenseList>
+      <LeaderBoard></LeaderBoard>
     </div>
   );
 }

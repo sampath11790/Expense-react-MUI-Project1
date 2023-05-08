@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteItem } from "../../../Store/Expense-thunk";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import "./liststyle.css";
 const ListItem = ({ item }) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
