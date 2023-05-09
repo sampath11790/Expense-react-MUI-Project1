@@ -6,6 +6,7 @@ import { postData } from "../../../Store/Expense-thunk";
 import { Button, TextField } from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
 import { AddToQueueOutlined } from "@mui/icons-material";
+import { getLeaderBoard } from "../../../Store/LeaderBoard-thunk";
 const Initial_state = { name: "", description: "", amount: "" };
 const ExpenseForm = () => {
   const [enteredInput, setenteredInput] = useState(Initial_state);
@@ -13,6 +14,7 @@ const ExpenseForm = () => {
   console.log("updated data===>", Expense);
 
   const token = localStorage.getItem("token");
+
   const Dispatch = useDispatch();
 
   const addEnteredInput = (e) => {
@@ -22,7 +24,14 @@ const ExpenseForm = () => {
     e.preventDefault();
 
     Dispatch(postData(enteredInput, token));
-    setenteredInput(Initial_state);
+    // console.log(ispremium == "true");
+    // const ispremium = localStorage.getItem("ispremium");
+    // if (ispremium == "true") {
+    //   console.log(ispremium == "true");
+    //   Dispatch(getLeaderBoard(token));
+    // }
+
+    // setenteredInput(Initial_state);
   };
 
   return (

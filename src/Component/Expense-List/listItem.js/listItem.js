@@ -1,14 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 // import ExpenseContext from "../context/ExpenseContext";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../../../Store/Expense-thunk";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./liststyle.css";
+import { getLeaderBoard } from "../../../Store/LeaderBoard-thunk";
 const ListItem = ({ item }) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   // const ctx = useContext(ExpenseContext);
+
+  function DeleteHandler(id, token) {
+    const ispremium = localStorage.getItem("ispremium");
+    dispatch(deleteItem(item.id, token));
+  }
   return (
     <tr key={item.name} className="some">
       {/* <td>{item.date}</td> */}
@@ -21,7 +27,7 @@ const ListItem = ({ item }) => {
             aria-label="delete"
             size="small"
             color="red"
-            onClick={() => dispatch(deleteItem(item.id, token))}
+            onClick={() => DeleteHandler(item.id, token)}
           >
             <DeleteIcon />
           </IconButton>

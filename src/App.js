@@ -8,15 +8,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getallExpense } from "./Store/Expense-thunk";
 import PrimarySearchAppBar from "./Component/Navbar/Navbar";
 import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
-// import ListStyle from "./Component/Expense-List/liststyle";
+import { getLeaderBoard } from "./Store/LeaderBoard-thunk";
 
 function App() {
   const dispatch = useDispatch();
   const call = useSelector((state) => state.expenseslice.iscall);
   useEffect(() => {
     const token = localStorage.getItem("token");
-    dispatch(getallExpense(token));
+    const ispremium = localStorage.getItem("ispremium");
+    if (ispremium === "true") {
+      dispatch(getallExpense(token));
+      dispatch(getLeaderBoard(token));
+    } else {
+      dispatch(getallExpense(token));
+    }
   }, [call]);
+
+  const ispremium = localStorage.getItem("ispremium");
   return (
     <div className="App">
       <PrimarySearchAppBar></PrimarySearchAppBar>
@@ -25,7 +33,7 @@ function App() {
       {/* <ExpenseForm></ExpenseForm> */}
 
       <ExpenseList></ExpenseList>
-      <LeaderBoard></LeaderBoard>
+      {ispremium == "true" && <LeaderBoard></LeaderBoard>}
     </div>
   );
 }

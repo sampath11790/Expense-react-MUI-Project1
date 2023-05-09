@@ -1,3 +1,4 @@
+import LeaderBoard from "../Component/LeaderBoard/LeaderBoard";
 import { ExpenseSliceAction } from "./ExpenseSlice";
 
 export const postData = (obj, token) => {
@@ -38,6 +39,9 @@ export const getallExpense = (token) => {
       console.log(fetcheddata);
       //want send proper data here we are getting array
       dispatch(ExpenseSliceAction.setSentData(fetcheddata));
+      // if (ispremium) {
+      //   dispatch(LeaderBoard(token));
+      // }
     } catch (error) {
       console.error(error);
       return;
@@ -58,6 +62,10 @@ export const deleteItem = (id, token) => {
       const data = await response.json();
       //calling get function by change use effect value
       dispatch(ExpenseSliceAction.callgetFunction());
+      // if (ispremium) {
+      //   dispatch(LeaderBoard(token));
+      // }
+
       console.log(data);
     } catch (err) {
       console.log(err);

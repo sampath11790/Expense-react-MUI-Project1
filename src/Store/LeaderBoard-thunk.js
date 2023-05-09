@@ -23,8 +23,9 @@ export const getLeaderBoard = (token) => {
         }
       );
       const data = await response.json();
+      console.log("leaderboard data", data);
       const transData = await transformData(data);
-      console.log("transData", transData);
+      // console.log("transData", transData);
       //calling get function by change use effect value
       dispatch(ExpenseSliceAction.updateLeaderBoard(transData));
       // console.log(data);
