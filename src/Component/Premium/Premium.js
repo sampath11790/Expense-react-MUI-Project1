@@ -6,7 +6,7 @@ const Premium = () => {
   const ispremium = localStorage.getItem("ispremium");
   async function razorPayPaymentHandler(token) {
     const data = await askreqst(token);
-//test
+    //test test
     console.log(data.key_id);
     //bsampath201-1@okaxis
     const options = {
