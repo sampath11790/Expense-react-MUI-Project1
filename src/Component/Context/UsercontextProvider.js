@@ -1,8 +1,11 @@
 import { useState } from "react";
 import UserContext from "./Usercontext";
+import { useNavigate } from "react-router-dom";
 
 const UserProvider = (props) => {
   const [errmessage, seterrormessage] = useState(null);
+  const [authendication, setauthendication] = useState(null);
+  const navigate = useNavigate();
   const login = async (obj) => {
     console.log(obj);
     // const token = localStorage.getItem("token");
@@ -23,7 +26,9 @@ const UserProvider = (props) => {
       console.log("data", data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("ispremium", data.ispremium);
+
       alert("login success");
+      setauthendication(true);
     } catch (err) {
       seterrormessage("enter valid password and email");
       alert("enter valid password and email");
@@ -55,6 +60,11 @@ const UserProvider = (props) => {
       console.log(err);
     }
   };
+  const authhandler = () => {
+    localStorage.clear();
+    setauthendication(false);
+    // navigate("/");
+  };
   return (
     <UserContext.Provider
       value={{
@@ -62,6 +72,9 @@ const UserProvider = (props) => {
         errmessage: errmessage,
         seterrormessage: seterrormessage,
         login: login,
+        authendication: authendication,
+        authhandler: authhandler,
+       
       }}
     >
       {props.children}

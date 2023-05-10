@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import "./Form.css";
 import {
   Box,
@@ -12,8 +12,9 @@ import {
 } from "@mui/material";
 import UserContext from "../Context/Usercontext";
 // import { Lock } from "@material-ui/icons";
-import { PersonAdd } from "@mui/icons-material";
+import { LockReset, PersonAdd } from "@mui/icons-material";
 import { Lock, LockClockOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const FormElememt = () => {
   const [user, setuser] = useState({
@@ -26,6 +27,21 @@ const FormElememt = () => {
 
   const confirmPassword = useRef(null);
   const ctx = useContext(UserContext);
+  const navigation = useNavigate();
+  const token = localStorage.getItem("token");
+  console.log("out not nagivate");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (ctx.authendication == true) {
+      console.log("not nagivate");
+      navigation("/expenselist");
+    } else if (token) {
+      console.log("not nagivate");
+      navigation("/expenselist");
+    } else {
+      navigation("/");
+    }
+  }, [ctx.authendication]);
   const onChangeHandler = (e) => {
     ctx.seterrormessage(" ");
     setuser({ ...user, [e.target.name]: e.target.value });
@@ -164,6 +180,20 @@ const FormElememt = () => {
             }}
           >
             {toggle == "signup" ? "Login" : "Sign up"}
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{
+              width: 300,
+              marginTop: 2,
+              color: "black",
+              borderColor: "white",
+              backgroundColor: "transparent",
+            }}
+            startIcon={<LockReset />}
+            onClick={() => navigation("/forgetpassword")}
+          >
+            forgetpassword
           </Button>
         </div>
       </Card>

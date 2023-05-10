@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ListItem, Stack } from "@mui/material";
 import Premium from "../Premium/Premium";
+import Logout from "../logout/logout";
 
 const PrimarySearchAppBar = () => {
   return (
@@ -47,6 +48,7 @@ const PrimarySearchAppBar = () => {
             <Premium></Premium>
           </ListItem>
         </Stack>
+        <Logout></Logout>
       </Toolbar>
     </AppBar>
   );

@@ -6,10 +6,13 @@ import UserProvider from "./Component/Context/UsercontextProvider";
 import Store from "./Store/Store";
 import { Provider } from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+import { BrowserRouter } from "react-router-dom";
 root.render(
   <Provider store={Store}>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <BrowserRouter>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </BrowserRouter>
   </Provider>
 );

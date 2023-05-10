@@ -9,31 +9,47 @@ import { getallExpense } from "./Store/Expense-thunk";
 import PrimarySearchAppBar from "./Component/Navbar/Navbar";
 import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
 import { getLeaderBoard } from "./Store/LeaderBoard-thunk";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import Forgetpassword from "./Component/forgetpassword/forgetpassword";
 
 function App() {
-  const dispatch = useDispatch();
-  const call = useSelector((state) => state.expenseslice.iscall);
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const ispremium = localStorage.getItem("ispremium");
-    if (ispremium === "true") {
-      dispatch(getallExpense(token));
-      dispatch(getLeaderBoard(token));
+    if (token) {
+      // navigate("/expenselist");
     } else {
-      dispatch(getallExpense(token));
+      navigate("/");
     }
-  }, [call]);
-
+  }, []);
   const ispremium = localStorage.getItem("ispremium");
+  const token = localStorage.getItem("token");
   return (
     <div className="App">
-      <PrimarySearchAppBar></PrimarySearchAppBar>
-      {/* <ListStyle></ListStyle> */}
-      <FormElememt></FormElememt>
-      {/* <ExpenseForm></ExpenseForm> */}
+      {token && <PrimarySearchAppBar></PrimarySearchAppBar>}
+      <Routes>
+        {token != "true" && (
+          <Route path="/" element={<FormElememt></FormElememt>} />
+        )}
+        {token != "true" && (
+          <Route
+            path="/forgetpassword"
+            element={<Forgetpassword></Forgetpassword>}
+          />
+        )}
+        <Route
+          path="/expenselist"
+          element={<ExpenseList></ExpenseList>}
+        ></Route>
 
-      <ExpenseList></ExpenseList>
-      {ispremium == "true" && <LeaderBoard></LeaderBoard>}
+        {/* {ispremium == "true" && ( */}
+        <Route path="/leaderboard" element={<LeaderBoard></LeaderBoard>} />
+        {/* )} */}
+
+        {/* <Route path="/contact" element={<Contact />} /> */}
+      </Routes>
     </div>
   );
 }

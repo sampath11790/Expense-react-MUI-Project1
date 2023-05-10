@@ -6,6 +6,9 @@ const UserContext = createContext({
   login: () => {},
   errmessage: null,
   seterrormessage: () => {},
+  authendication: null,
+  authhandler: () => {},
+  forgetpassword: () => {},
 });
 
 export default UserContext;

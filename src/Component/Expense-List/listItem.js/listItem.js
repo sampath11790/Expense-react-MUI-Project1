@@ -1,13 +1,29 @@
 import React, { useContext, useEffect } from "react";
 // import ExpenseContext from "../context/ExpenseContext";
-import { useDispatch } from "react-redux";
-import { deleteItem } from "../../../Store/Expense-thunk";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteItem, getallExpense } from "../../../Store/Expense-thunk";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./liststyle.css";
 import { getLeaderBoard } from "../../../Store/LeaderBoard-thunk";
+import { useNavigate } from "react-router-dom";
 const ListItem = ({ item }) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  // const call = useSelector((state) => state.expenseslice.iscall);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const ispremium = localStorage.getItem("ispremium");
+  //   if (ispremium === "true") {
+  //     dispatch(getallExpense(token));
+  //     dispatch(getLeaderBoard(token));
+  //   } else {
+  //     dispatch(getallExpense(token));
+  //   }
+  // }, [call]);
+
   const token = localStorage.getItem("token");
   // const ctx = useContext(ExpenseContext);
 

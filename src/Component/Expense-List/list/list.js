@@ -1,23 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ListItem from "../listItem.js/listItem";
 // import FormItem from "../Form/Form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ExpenseForm from "../ExpenseForm/ExpenseForm";
 import { Table } from "@mui/material";
-// import ExpenseContext from "../context/ExpenseContext";
-const initial = [
-  {
-    name: "some",
-    description: "some ssssssssescription ",
-    amount: "200",
-  },
-  { name: "some", description: "some description ", amount: "200" },
-  { name: "some", description: "some description ", amount: "200" },
-  { name: "some", description: "some description ", amount: "200" },
-];
+import LeaderBoard from "../../LeaderBoard/LeaderBoard";
+import { getallExpense } from "../../../Store/Expense-thunk";
+import { getLeaderBoard } from "../../../Store/LeaderBoard-thunk";
+import { useNavigate } from "react-router-dom";
+
 const ExpenseList = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.expenseslice.data);
+  const LeaderBoarddata = useSelector(
+    (state) => state.expenseslice.LeaderBoard
+  );
+
+  const navigate = useNavigate();
+  const call = useSelector((state) => state.expenseslice.iscall);
+  const ispremium = localStorage.getItem("ispremium");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const ispremium = localStorage.getItem("ispremium");
+    if (ispremium === "true") {
+      dispatch(getallExpense(token));
+      dispatch(getLeaderBoard(token));
+    } else {
+      dispatch(getallExpense(token));
+    }
+  }, [call]);
+
   // const ctx = useContext(ExpenseContext);
   // console.log(ctx.data);
   return (
@@ -30,7 +42,6 @@ const ExpenseList = () => {
         hoverRow
         sx={{ width: { sm: "100%", md: "60%" }, m: "0 auto", mt: 10 }}
       >
-        {/* <caption>Nutrition of your favorite menus.</caption> */}
         <thead>
           <tr className="some">
             {/* <th>Date</th> */}
@@ -47,11 +58,10 @@ const ExpenseList = () => {
           ))}
         </tbody>
       </Table>
-      {/* <ul>
-        {[...data].map((each) => (
-          <ListItem key={each.id} item={each}></ListItem>
-        ))}
-      </ul> */}
+
+      {ispremium == "true" && <LeaderBoard></LeaderBoard>}
+
+      {}
     </div>
   );
 };

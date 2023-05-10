@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { premiumRequest } from "../../Store/Expense-thunk";
 import { premiumRequest } from "../../Store/Premium-thunk";
+import { getLeaderBoard } from "../../Store/LeaderBoard-thunk";
 const Premium = () => {
+  const dispatch = useDispatch();
+  const LeaderBoarddata = useSelector(
+    (state) => state.expenseslice.LeaderBoard
+  );
+  console.log("premium component ", LeaderBoarddata);
+  const token = localStorage.getItem("token");
   const ispremium = localStorage.getItem("ispremium");
   async function razorPayPaymentHandler(token) {
     const data = await askreqst(token);
@@ -35,6 +42,8 @@ const Premium = () => {
             console.log(data);
             alert("payment successfull");
           }
+          localStorage.setItem("ispremium", true);
+          dispatch(getLeaderBoard(token));
         } catch (err) {
           console.log(err);
         }
@@ -50,9 +59,7 @@ const Premium = () => {
       alert("payment failed");
     });
   }
-  console.log(ispremium);
-  const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
+
   return (
     <>
       {/* <button onClick={() => dispatch(premiumRequest(token))}>
