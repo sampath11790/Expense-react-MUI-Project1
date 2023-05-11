@@ -11,6 +11,7 @@ import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
 import { getLeaderBoard } from "./Store/LeaderBoard-thunk";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Forgetpassword from "./Component/forgetpassword/forgetpassword";
+import ViewReports from "./Component/Reports/Report";
 
 function App() {
   // const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         {token != "true" && (
           <Route path="/" element={<FormElememt></FormElememt>} />
+          // <Route path="/" element={<ViewReports />} />
         )}
         {token != "true" && (
           <Route
@@ -48,7 +50,7 @@ function App() {
         <Route path="/leaderboard" element={<LeaderBoard></LeaderBoard>} />
         {/* )} */}
 
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/viewreport" element={<ViewReports />} />
       </Routes>
     </div>
   );

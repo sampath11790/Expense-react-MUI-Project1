@@ -6,11 +6,14 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import { ListItem, Stack } from "@mui/material";
+import { Button, ListItem, Stack } from "@mui/material";
 import Premium from "../Premium/Premium";
 import Logout from "../logout/logout";
+import DownloadButton from "../Downloadbutton/downloadbutton";
+import { useNavigate } from "react-router-dom";
 
 const PrimarySearchAppBar = () => {
+  const navigate = useNavigate();
   return (
     // <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
@@ -42,13 +45,18 @@ const PrimarySearchAppBar = () => {
             marginLeft: "auto",
           }}
         >
-          <ListItem>Expense</ListItem>
-          <ListItem>Profile</ListItem>
+          <ListItem onClick={() => navigate("/expenselist")}>
+            <Button variant="string"> Expense</Button>
+          </ListItem>
+          <ListItem onClick={() => navigate("/viewreport")}>
+            <Button variant="string"> View Report</Button>
+          </ListItem>
           <ListItem>
             <Premium></Premium>
           </ListItem>
         </Stack>
         <Logout></Logout>
+        <DownloadButton></DownloadButton>
       </Toolbar>
     </AppBar>
   );
