@@ -12,6 +12,7 @@ import { getLeaderBoard } from "./Store/LeaderBoard-thunk";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Forgetpassword from "./Component/forgetpassword/forgetpassword";
 import ViewReports from "./Component/Reports/Report";
+import DownloadedLinks from "./Component/Downloadbutton/downloadedLinks";
 
 function App() {
   // const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
         {/* )} */}
 
         <Route path="/viewreport" element={<ViewReports />} />
+        <Route path="/expense/download" element={<DownloadedLinks />} />
       </Routes>
     </div>
   );

@@ -28,7 +28,7 @@ const FormElememt = () => {
   const confirmPassword = useRef(null);
   const ctx = useContext(UserContext);
   const navigation = useNavigate();
-  const token = localStorage.getItem("token");
+
   console.log("out not nagivate");
   useEffect(() => {
     const token = localStorage.getItem("token");
