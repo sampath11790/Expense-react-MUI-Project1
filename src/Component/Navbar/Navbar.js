@@ -19,7 +19,7 @@ const PrimarySearchAppBar = () => {
     <AppBar position="static">
       <Toolbar>
         <IconButton
-          size="large"
+          size="medium"
           edge="start"
           color="inherit"
           aria-label="open drawer"
@@ -41,8 +41,7 @@ const PrimarySearchAppBar = () => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-around",
-            marginLeft: "auto",
+            // justifyContent: "space-around",
           }}
         >
           <ListItem onClick={() => navigate("/expenselist")}>
@@ -54,9 +53,14 @@ const PrimarySearchAppBar = () => {
           <ListItem>
             <Premium></Premium>
           </ListItem>
+          <ListItem>
+            <Button variant="string">
+              {" "}
+              <DownloadButton></DownloadButton>
+            </Button>
+          </ListItem>
         </Stack>
         <Logout></Logout>
-        <DownloadButton></DownloadButton>
       </Toolbar>
     </AppBar>
   );

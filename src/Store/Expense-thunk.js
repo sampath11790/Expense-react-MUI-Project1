@@ -24,19 +24,22 @@ export const postData = (obj, token) => {
   };
 };
 
-export const getallExpense = (token) => {
+export const getallExpense = (token, page = 1) => {
   return async (dispatch) => {
     try {
-      const response = await fetch("http://localhost:5004/expense", {
-        method: "GET",
+      const response = await fetch(
+        `http://localhost:5004/expense?page=${page}`,
+        {
+          method: "GET",
 
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      });
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
       const fetcheddata = await response.json();
-      console.log(fetcheddata);
+      console.log("fetcheddata", fetcheddata);
       //want send proper data here we are getting array
       dispatch(ExpenseSliceAction.setSentData(fetcheddata));
       // if (ispremium) {

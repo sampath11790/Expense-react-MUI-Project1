@@ -3,15 +3,16 @@ import ListItem from "../listItem.js/listItem";
 // import FormItem from "../Form/Form";
 import { useDispatch, useSelector } from "react-redux";
 import ExpenseForm from "../ExpenseForm/ExpenseForm";
-import { Table } from "@mui/material";
+import { Pagination, Table } from "@mui/material";
 import LeaderBoard from "../../LeaderBoard/LeaderBoard";
 import { getallExpense } from "../../../Store/Expense-thunk";
 import { getLeaderBoard } from "../../../Store/LeaderBoard-thunk";
 import { useNavigate } from "react-router-dom";
+import PaginationList from "../../pagination/pagination";
 
 const ExpenseList = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.expenseslice.data);
+  const expenses = useSelector((state) => state.expenseslice);
   const LeaderBoarddata = useSelector(
     (state) => state.expenseslice.LeaderBoard
   );
@@ -34,7 +35,6 @@ const ExpenseList = () => {
   // console.log(ctx.data);
   return (
     <div>
-      {/* <FormItem></FormItem> */}
       <ExpenseForm></ExpenseForm>
 
       <Table
@@ -52,16 +52,19 @@ const ExpenseList = () => {
           </tr>
         </thead>
         <tbody>
-          {[...data].map((each) => (
+          {[...expenses.data].map((each) => (
             // {initial.map((each) => (
             <ListItem key={each.id} item={each}></ListItem>
           ))}
         </tbody>
       </Table>
+      <div className="pagination-cont">
+        <PaginationList page={expenses.page}></PaginationList>
+      </div>
 
-      {ispremium == "true" && <LeaderBoard></LeaderBoard>}
+      <div>{ispremium == "true" && <LeaderBoard></LeaderBoard>}</div>
 
-      {}
+      {/* <Pagination count={10} variant="outlined" shape="rounded" /> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import "./download.css";
+import cls from "./download.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 const DownloadedLinks = () => {
   const { state } = useLocation();
@@ -9,7 +9,7 @@ const DownloadedLinks = () => {
     <>
       <ol>
         {state.map((each) => (
-          <li>
+          <li className={cls.listitem}>
             <a href={each.Location}>Click</a>
           </li>
         ))}

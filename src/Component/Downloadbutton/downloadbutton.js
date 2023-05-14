@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { CloudDownload } from "@mui/icons-material";
 const DownloadButton = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -23,7 +24,8 @@ const DownloadButton = () => {
 
   return (
     <>
-      <button onClick={DownloadallLinks}>DownloaReport</button>
+      <CloudDownload onClick={DownloadallLinks}></CloudDownload>
+      {/* <button >DownloaReport</button> */}
     </>
   );
 };

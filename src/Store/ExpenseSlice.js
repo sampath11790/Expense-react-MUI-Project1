@@ -4,6 +4,7 @@ var a = {
   data: [],
   LeaderBoard: [],
   iscall: true,
+  page: 0,
 };
 const ExpenseSlice = createSlice({
   initialState: a,
@@ -12,8 +13,9 @@ const ExpenseSlice = createSlice({
     setSentData(state, action) {
       // state.sendMail = !state.sendMail;
       // state.count = state.count + 1;
-      let temp = [...action.payload];
+      let temp = [...action.payload.data];
       state.data = temp;
+      state.page = action.payload.page;
 
       console.log("success");
     },
