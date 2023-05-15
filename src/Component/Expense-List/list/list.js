@@ -24,7 +24,13 @@ const ExpenseList = () => {
     const token = localStorage.getItem("token");
     const ispremium = localStorage.getItem("ispremium");
     if (ispremium === "true") {
-      dispatch(getallExpense(token));
+      // dispatch(getallExpense(token));
+      console.log(
+        "call time page,pagecount",
+        expenses.page,
+        expenses.pageCount
+      );
+      dispatch(getallExpense(token, expenses.page, expenses.pageCount));
       dispatch(getLeaderBoard(token));
     } else {
       dispatch(getallExpense(token));
@@ -59,7 +65,7 @@ const ExpenseList = () => {
         </tbody>
       </Table>
       <div className="pagination-cont">
-        <PaginationList page={expenses.page}></PaginationList>
+        <PaginationList count={expenses.count}></PaginationList>
       </div>
 
       <div>{ispremium == "true" && <LeaderBoard></LeaderBoard>}</div>

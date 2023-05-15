@@ -2,17 +2,26 @@ import React, { useEffect, useState } from "react";
 
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getallExpense } from "../../Store/Expense-thunk";
-
-export default function PaginationList({ page: currrentpage }) {
+import DropDownExpense from "../Dropdown/Dropdown";
+import { Box } from "@mui/material";
+import { ExpenseSliceAction } from "../../Store/ExpenseSlice";
+export default function PaginationList({ count, totalcount }) {
   const [Page, setPage] = useState(1);
+  const [pageCount, setPagecount] = useState(0);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.expenseslice);
 
   React.useEffect(() => {
-    dispatch(getallExpense(token, Page));
-  }, [Page]);
+    dispatch(getallExpense(token, Page, pageCount));
+    dispatch(ExpenseSliceAction.updatePage(Page));
+    dispatch(ExpenseSliceAction.updatePageCount(pageCount));
+  }, [Page, pageCount]);
+  // React.useEffect(() => {
+  //   setPage(1);
+  // }, [currentpage]);
   const pageHandler = (e, value) => {
     // return (e) => {
     e.preventDefault();
@@ -20,14 +29,23 @@ export default function PaginationList({ page: currrentpage }) {
     setPage(value);
   };
   return (
-    <Stack spacing={12}>
-      <Pagination
-        count={currrentpage}
-        onChange={pageHandler}
+    <Box display={"flex"} flexDirection={"row"}>
+      <DropDownExpense
+        totalcount={totalcount}
         page={Page}
-        variant="outlined"
-        shape="rounded"
-      ></Pagination>
-    </Stack>
+        pageCount={pageCount}
+        setPagecount={setPagecount}
+      ></DropDownExpense>
+      <Stack spacing={12}>
+        <Pagination
+          defaultPage={1}
+          count={count}
+          onChange={pageHandler}
+          page={Page || 0}
+          variant="outlined"
+          shape="rounded"
+        ></Pagination>
+      </Stack>
+    </Box>
   );
 }

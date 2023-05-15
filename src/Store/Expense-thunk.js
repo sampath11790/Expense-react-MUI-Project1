@@ -24,11 +24,11 @@ export const postData = (obj, token) => {
   };
 };
 
-export const getallExpense = (token, page = 1) => {
+export const getallExpense = (token, page = 1, pageCount = 5) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:5004/expense?page=${page}`,
+        `http://localhost:5004/expense?page=${page}&pageCount=${pageCount}`,
         {
           method: "GET",
 
