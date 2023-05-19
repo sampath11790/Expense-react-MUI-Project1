@@ -14,7 +14,7 @@ const DownloadButton = (props) => {
   const ispremium = localStorage.getItem("ispremium");
   const DownloadallLinks = async () => {
     try {
-      const response = await fetch("http://localhost:5004/expense/download", {
+      const response = await fetch("http://23.21.23.89:3000/expense/download", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

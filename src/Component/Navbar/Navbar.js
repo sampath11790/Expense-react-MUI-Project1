@@ -28,6 +28,10 @@ const PrimarySearchAppBar = () => {
 
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.themeslice.ActiveMode);
+  const LeaderBoarddata = useSelector(
+    (state) => state.expenseslice.LeaderBoard
+  );
+  const ispremium = localStorage.getItem("ispremium");
 
   const navigate = useNavigate();
   const toggleDrawer = (open) => () => {
@@ -105,18 +109,20 @@ const PrimarySearchAppBar = () => {
                   {item.component}
                 </ListItem>
               ))}
-              <IconButton
-                // color="inherit"
-                aria-label="toggle night mode"
-                onClick={toggleNightMode}
-                sx={{
-                  color: isDarkMode ? "black" : "black",
-                  background: isDarkMode ? "white" : "inhert",
-                }}
-              >
-                {isNightMode ? <Brightness4Icon /> : <Brightness7Icon />}
-                {isNightMode ? "Light Mode" : "Dark Mode"}
-              </IconButton>
+              {ispremium == "true" && (
+                <IconButton
+                  // color="inherit"
+                  aria-label="toggle night mode"
+                  onClick={toggleNightMode}
+                  sx={{
+                    color: isDarkMode ? "black" : "black",
+                    background: isDarkMode ? "white" : "inhert",
+                  }}
+                >
+                  {isNightMode ? <Brightness4Icon /> : <Brightness7Icon />}
+                  {isNightMode ? "Light Mode" : "Dark Mode"}
+                </IconButton>
+              )}
             </Stack>
           </Stack>
         </Toolbar>
@@ -143,17 +149,19 @@ const PrimarySearchAppBar = () => {
               {item.component}
             </ListItem>
           ))}
-          <IconButton
-            // color="inherit"
-            aria-label="toggle night mode"
-            onClick={toggleNightMode}
-            sx={{
-              color: isDarkMode ? "white" : "#000000",
-            }}
-          >
-            {isNightMode ? <Brightness4Icon /> : <Brightness7Icon />}
-            {isNightMode ? "Light" : "Dark"}
-          </IconButton>
+          {ispremium == "true" && (
+            <IconButton
+              // color="inherit"
+              aria-label="toggle night mode"
+              onClick={toggleNightMode}
+              sx={{
+                color: isDarkMode ? "white" : "#000000",
+              }}
+            >
+              {isNightMode ? <Brightness4Icon /> : <Brightness7Icon />}
+              {isNightMode ? "Light" : "Dark"}
+            </IconButton>
+          )}
         </List>
       </Drawer>
     </>

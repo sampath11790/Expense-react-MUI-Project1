@@ -90,7 +90,7 @@ export default Forgetpassword;
 async function formHandler(enteredemail) {
   try {
     const response = await fetch(
-      "http://localhost:5004/password/forgotpassword",
+      "http://23.21.23.89:3000/password/forgotpassword",
       {
         method: "POST",
         body: JSON.stringify({ email: enteredemail }),

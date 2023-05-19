@@ -10,7 +10,7 @@ const UserProvider = (props) => {
     console.log(obj);
     // const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:5004/user/login", {
+      const response = await fetch("http://23.21.23.89:3000/user/login", {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
@@ -39,7 +39,7 @@ const UserProvider = (props) => {
     console.log(obj);
 
     try {
-      const response = await fetch("http://localhost:5004/user/signup", {
+      const response = await fetch("http://23.21.23.89:3000/user/signup", {
         method: "POST",
         body: JSON.stringify(obj),
         headers: {
@@ -74,7 +74,6 @@ const UserProvider = (props) => {
         login: login,
         authendication: authendication,
         authhandler: authhandler,
-       
       }}
     >
       {props.children}

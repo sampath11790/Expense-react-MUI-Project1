@@ -197,6 +197,14 @@ const FormElememt = () => {
           </Button>
         </div>
       </Card>
+      <div>
+        <span> premium id=test@gmail.com</span>
+        <span> password=1234</span>
+      </div>
+      <div>
+        <span> Normal user id=test1@gmail.com</span>
+        <span> password=1234</span>
+      </div>
     </>
   );
 };

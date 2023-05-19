@@ -1,5 +1,11 @@
 import "./App.css";
-import { Container, Pagination, Paper, ThemeProvider } from "@mui/material";
+import {
+  Container,
+  Pagination,
+  Paper,
+  ThemeProvider,
+  darkScrollbar,
+} from "@mui/material";
 import FormElememt from "./Component/Form/Form";
 import ExpenseList from "./Component/Expense-List/list/list";
 import { useEffect } from "react";
@@ -33,6 +39,7 @@ function App() {
       mode: darkMode ? "dark" : "light",
     },
   });
+  console.log("darkMode", darkMode);
   return (
     <ThemeProvider theme={theme}>
       <div className={`App ${darkMode ? "dark" : "light"}`}>

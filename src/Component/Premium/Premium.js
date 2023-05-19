@@ -28,7 +28,7 @@ const Premium = () => {
           console.log("response", response);
 
           const dbresponse = await fetch(
-            "http://localhost:5004/response/premium",
+            "http://23.21.23.89:3000/response/premium",
             {
               method: "post",
               body: JSON.stringify(response),
@@ -95,7 +95,7 @@ const Premium = () => {
 console.log("test");
 export default Premium;
 async function askreqst(token) {
-  const response = await fetch("http://localhost:5004/purchase/premium", {
+  const response = await fetch("http://23.21.23.89:3000/purchase/premium", {
     method: "GET",
     headers: {
       Authorization: token,

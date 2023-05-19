@@ -35,7 +35,8 @@ const ExpenseList = () => {
       dispatch(getLeaderBoard(token));
     } else {
       console.log("is premium false ");
-      dispatch(getallExpense(token));
+      // dispatch(getallExpense(token));
+      dispatch(getallExpense(token, expenses.page, expenses.pageCount));
     }
   }, [call]);
 

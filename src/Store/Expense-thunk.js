@@ -5,7 +5,7 @@ export const postData = (obj, token) => {
   return async (dispatch) => {
     try {
       const jsondata = JSON.stringify(obj);
-      const response = await fetch("http://localhost:5004/post-product", {
+      const response = await fetch("http://23.21.23.89:3000/post-product", {
         method: "POST",
         body: jsondata,
         headers: {
@@ -28,7 +28,7 @@ export const getallExpense = (token, page, pageCount) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:5004/expense?page=${page}&pageCount=${pageCount}`,
+        `http://23.21.23.89:3000/expense?page=${page}&pageCount=${pageCount}`,
         {
           method: "GET",
 
@@ -55,13 +55,16 @@ export const getallExpense = (token, page, pageCount) => {
 export const deleteItem = (id, token) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`http://localhost:5004/post-product/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      });
+      const response = await fetch(
+        `http://23.21.23.89:3000/post-product/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
       const data = await response.json();
       //calling get function by change use effect value
       dispatch(ExpenseSliceAction.callgetFunction());

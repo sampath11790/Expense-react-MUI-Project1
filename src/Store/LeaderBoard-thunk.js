@@ -13,7 +13,7 @@ export const getLeaderBoard = (token) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:5004/premium/leaderboard`,
+        `http://23.21.23.89:3000/premium/leaderboard`,
         {
           method: "GET",
           headers: {

@@ -2,7 +2,7 @@ export const premiumRequest = (token) => {
   // "/purchase/premium"
   return async (dispatch) => {
     try {
-      const response = await fetch("http://localhost:5004/purchase/premium", {
+      const response = await fetch("http://23.21.23.89:3000/purchase/premium", {
         method: "GET",
         headers: {
           Authorization: token,
