@@ -1,0 +1,31 @@
+/* .activeNavLink:active {
+  color: pink !important;
+  font-weight: bold;
+} */
+
+.activeNavLink:focus:active {
+  background-color: yellowgreen !important;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: yellow;
+}
+@media screen and (max-width: 600px) {
+  .navLink {
+    /* color: rgb(59, 54, 54); */
+    text-decoration: none;
+  }
+
+  /* .navLink.active {
+    color: pink;
+  } */
+
+  .navLink:focus {
+    outline: none;
+  }
+}

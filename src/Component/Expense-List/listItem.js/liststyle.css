@@ -1,3 +1,6 @@
+tr {
+  outline: auto;
+}
 @media screen and (max-width: 600px) {
   th,
   td,
@@ -12,11 +15,18 @@
   }
   tbody,
   td {
-    background-color: rgb(35, 124, 226);
+    background-color: rgb(183, 210, 241);
+    color: black;
+    margin-top: 3px;
   }
   th,
   thead {
     justify-content: flex-start;
-    background-color: yellow;
+    background-color: rgb(56, 13, 105);
+    color: aliceblue !important;
+    border-left: 1px;
+  }
+  tr {
+    outline: auto;
   }
 }

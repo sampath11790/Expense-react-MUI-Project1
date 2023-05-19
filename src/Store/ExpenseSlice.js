@@ -22,7 +22,7 @@ const ExpenseSlice = createSlice({
       state.count = action.payload.count;
       state.totalcount = action.payload.totalcount;
       // state.currentpage = 1;
-      console.log("success");
+      // console.log("success");
     },
     callgetFunction(state, action) {
       state.iscall = !state.iscall;
@@ -34,7 +34,7 @@ const ExpenseSlice = createSlice({
       state.page = action.payload;
     },
     updatePageCount(state, action) {
-      state.pageCount = action.payload || 5;
+      state.pageCount = action.payload;
     },
   },
 });

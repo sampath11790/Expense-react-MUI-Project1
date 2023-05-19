@@ -29,14 +29,14 @@ const FormElememt = () => {
   const ctx = useContext(UserContext);
   const navigation = useNavigate();
 
-  console.log("out not nagivate");
+  // console.log("out not nagivate");
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (ctx.authendication == true) {
-      console.log("not nagivate");
+      // console.log("not nagivate");
       navigation("/expenselist");
     } else if (token) {
-      console.log("not nagivate");
+      // console.log("not nagivate");
       navigation("/expenselist");
     } else {
       navigation("/");
@@ -69,7 +69,7 @@ const FormElememt = () => {
     <>
       <Card
         sx={{
-          width: { xs: "100%", sm: 330, md: 330 },
+          width: { xs: "80%", sm: 330, md: 330 },
           height: "100%",
           m: "25px auto",
           "--Card-radius": "15px",
@@ -168,7 +168,7 @@ const FormElememt = () => {
           <Button
             variant="outlined"
             sx={{
-              width: 300,
+              width: { xs: "95%", sm: 300, md: 300 },
               marginTop: 2,
               color: "black",
               borderColor: "white",
@@ -184,7 +184,7 @@ const FormElememt = () => {
           <Button
             variant="outlined"
             sx={{
-              width: 300,
+              width: { xs: "95%", sm: 300, md: 300 },
               marginTop: 2,
               color: "black",
               borderColor: "white",

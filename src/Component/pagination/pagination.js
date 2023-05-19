@@ -7,17 +7,24 @@ import { getallExpense } from "../../Store/Expense-thunk";
 import DropDownExpense from "../Dropdown/Dropdown";
 import { Box } from "@mui/material";
 import { ExpenseSliceAction } from "../../Store/ExpenseSlice";
+let iscall = false;
 export default function PaginationList({ count, totalcount }) {
   const [Page, setPage] = useState(1);
   const [pageCount, setPagecount] = useState(0);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const expenses = useSelector((state) => state.expenseslice);
+  // const expenses = useSelector((state) => state.expenseslice);
 
   React.useEffect(() => {
-    dispatch(getallExpense(token, Page, pageCount));
-    dispatch(ExpenseSliceAction.updatePage(Page));
-    dispatch(ExpenseSliceAction.updatePageCount(pageCount));
+    if (iscall == true) {
+      dispatch(getallExpense(token, Page, pageCount));
+      dispatch(ExpenseSliceAction.updatePage(Page));
+      dispatch(ExpenseSliceAction.updatePageCount(pageCount));
+      return;
+    }
+
+    iscall = true;
+    return;
   }, [Page, pageCount]);
   // React.useEffect(() => {
   //   setPage(1);

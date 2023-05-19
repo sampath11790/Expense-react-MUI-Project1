@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 // import { premiumRequest } from "../../Store/Expense-thunk";
 import { premiumRequest } from "../../Store/Premium-thunk";
 import { getLeaderBoard } from "../../Store/LeaderBoard-thunk";
+import { Box, ListItemText } from "@mui/material";
 const Premium = () => {
   const dispatch = useDispatch();
   const LeaderBoarddata = useSelector(
     (state) => state.expenseslice.LeaderBoard
   );
-  console.log("premium component ", LeaderBoarddata);
+  // console.log("premium component ", LeaderBoarddata);
   const token = localStorage.getItem("token");
   const ispremium = localStorage.getItem("ispremium");
   async function razorPayPaymentHandler(token) {
@@ -59,7 +60,7 @@ const Premium = () => {
       alert("payment failed");
     });
   }
-
+  // "Premium"
   return (
     <>
       {/* <button onClick={() => dispatch(premiumRequest(token))}>
@@ -67,21 +68,30 @@ const Premium = () => {
       </button> */}
       {/* <button onClick={() => razorPayPaymentHandler(token)}>buy Premium</button> */}
       {ispremium == "true" ? (
-        <div className="gif-img">
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
           <img
+            className="gif-img"
             src="https://c.tenor.com/9cYfCqKw0DwAAAAj/corona.gif"
             alt="crown"
           ></img>
-          {/* <span>Premium User</span> */}
-        </div>
+          <ListItemText primary={"Premium User"} />
+        </Box>
       ) : (
-        <button onClick={() => razorPayPaymentHandler(token)}>
-          buy Premium
-        </button>
+        <ListItemText
+          onClick={() => razorPayPaymentHandler(token)}
+          primary={"buy Premium"}
+        />
       )}
     </>
   );
 };
+
 console.log("test");
 export default Premium;
 async function askreqst(token) {

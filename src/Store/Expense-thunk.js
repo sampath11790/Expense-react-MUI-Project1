@@ -24,7 +24,7 @@ export const postData = (obj, token) => {
   };
 };
 
-export const getallExpense = (token, page = 1, pageCount = 5) => {
+export const getallExpense = (token, page, pageCount) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
@@ -39,7 +39,7 @@ export const getallExpense = (token, page = 1, pageCount = 5) => {
         }
       );
       const fetcheddata = await response.json();
-      console.log("fetcheddata", fetcheddata);
+      // console.log("fetcheddata", fetcheddata);
       //want send proper data here we are getting array
       dispatch(ExpenseSliceAction.setSentData(fetcheddata));
       // if (ispremium) {

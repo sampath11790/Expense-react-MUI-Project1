@@ -62,6 +62,7 @@ const LeaderBoard = () => {
                     gridTemplateColumns: { md: "fr 2fr" },
                     gap: 2,
                     width: 350,
+                    color: "black",
                   }}
                 >
                   Name= {each.name}----totalCost =
