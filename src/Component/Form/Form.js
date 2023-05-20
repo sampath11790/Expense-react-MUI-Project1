@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Form.css";
 import {
   Box,
@@ -25,18 +25,14 @@ const FormElememt = () => {
   });
   const [toggle, settoggle] = useState("login");
 
-  const confirmPassword = useRef(null);
   const ctx = useContext(UserContext);
   const navigation = useNavigate();
 
-  // console.log("out not nagivate");
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (ctx.authendication == true) {
-      // console.log("not nagivate");
       navigation("/expenselist");
     } else if (token) {
-      // console.log("not nagivate");
       navigation("/expenselist");
     } else {
       navigation("/");
@@ -49,7 +45,7 @@ const FormElememt = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("user", confirmPassword);
+
     if (toggle == "signup") {
       if (user.password === user.confirmpassword) {
         ctx.signup(user);

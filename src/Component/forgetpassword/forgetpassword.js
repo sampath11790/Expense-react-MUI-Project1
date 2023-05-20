@@ -17,7 +17,6 @@ const Forgetpassword = () => {
     const response = await formHandler(email);
     alert("please verify your email to reset password");
     navigation("/");
-    console.log(response);
   };
   return (
     <>
@@ -105,9 +104,7 @@ async function formHandler(enteredemail) {
     }
 
     return data;
-    // console.log("forgetpassword", data);
   } catch (err) {
     return err;
-    console.log(err);
   }
 }

@@ -1,23 +1,35 @@
 import "./App.css";
-import {
-  Container,
-  Pagination,
-  Paper,
-  ThemeProvider,
-  darkScrollbar,
-} from "@mui/material";
-import FormElememt from "./Component/Form/Form";
-import ExpenseList from "./Component/Expense-List/list/list";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import PrimarySearchAppBar from "./Component/Navbar/Navbar";
-import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Forgetpassword from "./Component/forgetpassword/forgetpassword";
-import ViewReports from "./Component/Reports/Report";
-import DownloadedLinks from "./Component/Downloadbutton/downloadedLinks";
+import React from "react";
+import { ThemeProvider } from "@mui/material";
+// import FormElememt from "./Component/Form/Form";
+// import ExpenseList from "./Component/Expense-List/list/list";
+import { Suspense, useEffect } from "react";
+import { useSelector } from "react-redux";
+// import PrimarySearchAppBar from "./Component/Navbar/Navbar";
+// import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
+import { Routes, Route, useNavigate } from "react-router-dom";
+// import Forgetpassword from "./Component/forgetpassword/forgetpassword";
+// import ViewReports from "./Component/Reports/Report";
+// import DownloadedLinks from "./Component/Downloadbutton/downloadedLinks";
 import { createTheme } from "@mui/material/styles";
-
+//
+const FormElememt = React.lazy(() => import("./Component/Form/Form"));
+const ExpenseList = React.lazy(() =>
+  import("./Component/Expense-List/list/list")
+);
+const PrimarySearchAppBar = React.lazy(() =>
+  import("./Component/Navbar/Navbar")
+);
+const LeaderBoard = React.lazy(() =>
+  import("./Component/LeaderBoard/LeaderBoard")
+);
+const Forgetpassword = React.lazy(() =>
+  import("./Component/forgetpassword/forgetpassword")
+);
+const DownloadedLinks = React.lazy(() =>
+  import("./Component/Downloadbutton/downloadedLinks")
+);
+const ViewReports = React.lazy(() => import("./Component/Reports/Report"));
 function App() {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +42,7 @@ function App() {
       navigate("/");
     }
   }, []);
-  const ispremium = localStorage.getItem("ispremium");
+
   const token = localStorage.getItem("token");
   const darkMode = useSelector((state) => state.themeslice.ActiveMode);
 
@@ -39,35 +51,36 @@ function App() {
       mode: darkMode ? "dark" : "light",
     },
   });
-  console.log("darkMode", darkMode);
+
   return (
     <ThemeProvider theme={theme}>
-      <div className={`App ${darkMode ? "dark" : "light"}`}>
-        {token && <PrimarySearchAppBar></PrimarySearchAppBar>}
-        <Routes>
-          {token != "true" && (
-            <Route path="/" element={<FormElememt></FormElememt>} />
-            // <Route path="/" element={<ViewReports />} />
-          )}
-          {token != "true" && (
+      <Suspense fallback={<p className="loading">Loading .....</p>}>
+        <div className={`App ${darkMode ? "dark" : "light"}`}>
+          {token && <PrimarySearchAppBar></PrimarySearchAppBar>}
+          <Routes>
+            {token != "true" && (
+              <Route path="/" element={<FormElememt></FormElememt>} />
+            )}
+            {token != "true" && (
+              <Route
+                path="/forgetpassword"
+                element={<Forgetpassword></Forgetpassword>}
+              />
+            )}
             <Route
-              path="/forgetpassword"
-              element={<Forgetpassword></Forgetpassword>}
-            />
-          )}
-          <Route
-            path="/expenselist"
-            element={<ExpenseList></ExpenseList>}
-          ></Route>
+              path="/expenselist"
+              element={<ExpenseList></ExpenseList>}
+            ></Route>
 
-          {/* {ispremium == "true" && ( */}
-          <Route path="/leaderboard" element={<LeaderBoard></LeaderBoard>} />
-          {/* )} */}
+            {/* {ispremium == "true" && ( */}
+            <Route path="/leaderboard" element={<LeaderBoard></LeaderBoard>} />
+            {/* )} */}
 
-          <Route path="/viewreport" element={<ViewReports />} />
-          <Route path="/expense/download" element={<DownloadedLinks />} />
-        </Routes>
-      </div>
+            <Route path="/viewreport" element={<ViewReports />} />
+            <Route path="/expense/download" element={<DownloadedLinks />} />
+          </Routes>
+        </div>
+      </Suspense>
     </ThemeProvider>
   );
 }

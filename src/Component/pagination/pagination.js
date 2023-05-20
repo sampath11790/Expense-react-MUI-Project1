@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getallExpense } from "../../Store/Expense-thunk";
 import DropDownExpense from "../Dropdown/Dropdown";
 import { Box } from "@mui/material";
@@ -13,7 +13,6 @@ export default function PaginationList({ count, totalcount }) {
   const [pageCount, setPagecount] = useState(0);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  // const expenses = useSelector((state) => state.expenseslice);
 
   React.useEffect(() => {
     if (iscall == true) {
@@ -26,11 +25,8 @@ export default function PaginationList({ count, totalcount }) {
     iscall = true;
     return;
   }, [Page, pageCount]);
-  // React.useEffect(() => {
-  //   setPage(1);
-  // }, [currentpage]);
+
   const pageHandler = (e, value) => {
-    // return (e) => {
     e.preventDefault();
 
     setPage(value);

@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { premiumRequest } from "../../Store/Expense-thunk";
-import { premiumRequest } from "../../Store/Premium-thunk";
+
 import { getLeaderBoard } from "../../Store/LeaderBoard-thunk";
 import { Box, ListItemText } from "@mui/material";
 const Premium = () => {
@@ -9,7 +8,7 @@ const Premium = () => {
   const LeaderBoarddata = useSelector(
     (state) => state.expenseslice.LeaderBoard
   );
-  // console.log("premium component ", LeaderBoarddata);
+
   const token = localStorage.getItem("token");
   const ispremium = localStorage.getItem("ispremium");
   async function razorPayPaymentHandler(token) {
@@ -24,7 +23,6 @@ const Premium = () => {
       order_id: data.order.id,
       handler: async (response) => {
         try {
-          const paymentId = response.razorpay_payment_id;
           console.log("response", response);
 
           const dbresponse = await fetch(
@@ -63,10 +61,6 @@ const Premium = () => {
   // "Premium"
   return (
     <>
-      {/* <button onClick={() => dispatch(premiumRequest(token))}>
-        buy Premium
-      </button> */}
-      {/* <button onClick={() => razorPayPaymentHandler(token)}>buy Premium</button> */}
       {ispremium == "true" ? (
         <Box
           sx={{

@@ -1,17 +1,13 @@
-import React, { useContext, useState } from "react";
-
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { postData } from "../../../Store/Expense-thunk";
 import { Button, TextField } from "@mui/material";
-import { PersonAdd } from "@mui/icons-material";
 import { AddToQueueOutlined } from "@mui/icons-material";
-import { getLeaderBoard } from "../../../Store/LeaderBoard-thunk";
+
 const Initial_state = { name: "", description: "", amount: "" };
 const ExpenseForm = () => {
   const [enteredInput, setenteredInput] = useState(Initial_state);
   const Expense = useSelector((state) => state.expenseslice.data);
-  console.log("updated data===>", Expense);
 
   const token = localStorage.getItem("token");
 
@@ -24,16 +20,7 @@ const ExpenseForm = () => {
     e.preventDefault();
 
     Dispatch(postData(enteredInput, token));
-    // console.log(ispremium == "true");
-    // const ispremium = localStorage.getItem("ispremium");
-    // if (ispremium == "true") {
-    //   console.log(ispremium == "true");
-    //   Dispatch(getLeaderBoard(token));
-    // }
-
-    // setenteredInput(Initial_state);
   };
-
   return (
     <div style={{ marginTop: 10 }}>
       <TextField
@@ -66,16 +53,6 @@ const ExpenseForm = () => {
       />
       <br />
 
-      {/* <TextField
-        sx={{ m: 1.5 }}
-        type="date"
-        value={enteredInput.date}
-        name="date"
-        onChange={addEnteredInput}
-        // label="date"
-        variant="outlined"
-      /> */}
-      {/* <br /> */}
       <Button
         sx={{
           width: { sx: 100, sm: 200, md: 300 },
@@ -90,9 +67,6 @@ const ExpenseForm = () => {
       >
         Add Expense
       </Button>
-      {/* <br />
-      <button onClick={submitHandler}>Add Product</button>
-      <br /> */}
     </div>
   );
 };

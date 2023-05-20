@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeaderBoard } from "../../Store/LeaderBoard-thunk";
 import "./Leaderboard.css";
-import { Avatar, Box, Button, Grid, Paper, Table } from "@mui/material";
+import { Box, Button, Grid, Paper } from "@mui/material";
 
 const LeaderBoard = () => {
   const [Hide, setHide] = useState(true);
@@ -12,7 +12,6 @@ const LeaderBoard = () => {
   );
   const dispatch = useDispatch();
   const testfun = () => {
-    console.log("testing");
     setHide(false);
     setshow(!show);
     const token = localStorage.getItem("token");
@@ -67,11 +66,6 @@ const LeaderBoard = () => {
                 >
                   Name= {each.name}----totalCost =
                   {each.totalcost ? each.totalcost : "NO Expense"}
-                  {/* <Avatar
-                    alt="Remy Sharp"
-                    src="https://th.bing.com/th/id/OIP.eCku7oyJZE8mOT6nRRUq0QHaKL?w=185&h=254&c=7&r=0&o=5&pid=1.7"
-                    sx={{ width: 34, height: 34 }}
-                  /> */}
                 </Paper>
               </Grid>
             ))}
